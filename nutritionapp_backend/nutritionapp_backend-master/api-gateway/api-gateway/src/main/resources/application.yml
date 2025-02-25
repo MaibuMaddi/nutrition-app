@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: nutrition-api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: authentication-service
+          uri: http://localhost:8082
+          predicates:
+            - Path=/auth/**
+        - id: userprofile
+          uri: http://localhost:8081
+          predicates:
+            - Path=/userProfile/**
+        - id: nutrition-service
+          uri: http://localhost:8083
+          predicates:
+            - Path=/nutrition/**
+        - id: wishlist
+          uri: http://localhost:8084
+          predicates:
+            - Path=/wishlist/**
+
+server:
+  port: 8088
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/

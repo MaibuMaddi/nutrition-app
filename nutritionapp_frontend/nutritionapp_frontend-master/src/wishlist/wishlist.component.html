@@ -1,0 +1,110 @@
+<!-- <p>wishlist works!</p>
+<div *ngFor="let foodItem of wishList">
+    
+  {{foodItem | json }}
+  <br> 
+  <button (click)="deleteFoodItemFromWishList(foodItem)">Delete Product</button>
+  <br> <br>
+</div>
+<br>
+<button (click)="addNewProducts()">Click to add new products</button>
+<br><br>
+<button (click)="logout()">Logout</button> -->
+
+
+<br>
+<h1 class="text-center"> Hi {{username}} , This is Your wishList</h1>
+
+<div  *ngIf="wishList.length > 0"  class="container mt-3">
+  <mat-table  [dataSource]="wishList" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="itemName">
+      <mat-header-cell *matHeaderCellDef> Item Name </mat-header-cell>
+      <mat-cell *matCellDef="let foodItem"> {{ foodItem.nix_item_name }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="brandName">
+      <mat-header-cell *matHeaderCellDef> Brand Name </mat-header-cell>
+      <mat-cell *matCellDef="let foodItem"> {{ foodItem.nix_brand_name }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="servingQuantity">
+      <mat-header-cell *matHeaderCellDef> serving Quantity</mat-header-cell>
+      <mat-cell *matCellDef="let foodItem"> {{ foodItem.serving_qty }} {{ foodItem.serving_unit }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="calories">
+      <mat-header-cell *matHeaderCellDef> calories</mat-header-cell>
+      <mat-cell *matCellDef="let foodItem"> {{ foodItem.nf_calories }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="totalfat">
+      <mat-header-cell *matHeaderCellDef>Total Fat</mat-header-cell>
+      <mat-cell *matCellDef="let foodItem"> {{ foodItem.nf_total_fat }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="cholesterol">
+      <mat-header-cell *matHeaderCellDef>cholesterol</mat-header-cell>
+      <mat-cell *matCellDef="let foodItem"> {{ foodItem.nf_cholesterol }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="sodium">
+      <mat-header-cell *matHeaderCellDef>sodium</mat-header-cell>
+      <mat-cell *matCellDef="let foodItem"> {{ foodItem.nf_sodium }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="totalCarbohydrate">
+      <mat-header-cell *matHeaderCellDef>total carbohydrate</mat-header-cell>
+      <mat-cell *matCellDef="let foodItem"> {{ foodItem.nf_total_carbohydrate }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="dietaryFiber">
+      <mat-header-cell *matHeaderCellDef>dietary fiber</mat-header-cell>
+      <mat-cell *matCellDef="let foodItem"> {{ foodItem.nf_dietary_fiber }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="sugars">
+      <mat-header-cell *matHeaderCellDef>sugars</mat-header-cell>
+      <mat-cell *matCellDef="let foodItem"> {{ foodItem.nf_sugars }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="protein">
+      <mat-header-cell *matHeaderCellDef>protein</mat-header-cell>
+      <mat-cell *matCellDef="let foodItem"> {{ foodItem.nf_protein}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="potassium">
+      <mat-header-cell *matHeaderCellDef>potassium</mat-header-cell>
+      <mat-cell *matCellDef="let foodItem"> {{ foodItem.nf_potassium }} </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="delete">
+      <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+      <mat-cell *matCellDef="let foodItem">
+        <button mat-icon-button (click)="deleteFoodItemFromWishList(foodItem)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </mat-table>
+</div>
+
+<div *ngIf="wishList.length === 0" class="text-center mt-3 text-danger">
+  <h1>NO ITEMS FOUND IN YOUR WISHLIST</h1>
+  <p>Click below button to add new products to your wishlist</p>
+</div>
+
+<div class="text-center mt-3">
+  <button mat-raised-button color="primary" (click)="addNewProducts()">Add New Products</button>
+</div>
+
+<div class="text-center mt-3">
+  <button mat-raised-button color="warn" (click)="logout()">Logout</button>
+</div>
